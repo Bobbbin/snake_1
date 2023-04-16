@@ -82,9 +82,37 @@ def gameloop():
                     y1_change = snake_block
                 if event.key == pygame.K_DOWN:
                     y1_change = -snake_block
-        win.fill(blue)
+
+        if x1 >=in_width or x1 < 0 or y1 >=in_height or y1 < 0:
+            game_close = True
         
+        x1 += x1_change
+        y1 += y1_change
+        win.fill(blue)
+        pygame.draw.rect(win, green, [foodx, foody, snake_black, snake_block])
+        snake Head = []
+        snake_Head.append(x1)
+        snake_Head.append(y1)
+        snake_list.append(snake)
         pygame.display.update()
+        clock.tick(snake_speed)
+        
+        if len(snake_List) > Length_of_snake:
+            del snake_List [0]
+            
+            for x in snake_List[:-1]:
+                if x == snake_Head:
+                    game_close = True
+                    
+                   
+    snake(snake_black, snake_List)
+    snake(Length_of_snake - 1)
+    
+    pygame.display.update()
+    
+    if x1 == food x and y1 == foody:
+        foodx , foody = apple()
+        Length_of_snake += 1
         clock.tick(snake_speed)
     pygame.quit()
     quit()
